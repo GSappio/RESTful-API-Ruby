@@ -18,4 +18,12 @@ class ApplicationController < ActionController::API
         render nothing: true, status: 415
       end
     end
+    
 end
+
+# before_filter :ensure_json_request
+
+#   def ensure_json_request
+#     return if request.headers["Accept"] =~ /vnd\.api\+json/
+#     render :nothing => true, :status => 406
+#   end
