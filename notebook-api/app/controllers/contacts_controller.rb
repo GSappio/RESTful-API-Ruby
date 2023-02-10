@@ -10,8 +10,8 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1
   def show
-    render json: @contact, include: [:kind, :phones, :address]
-  end
+    render json: @contact, include: [:kind] #, meta: { author: "Gabriel Sappio" } #, include: [:kind, :phones, :address]
+  end 
 
   # POST /contacts
   def create
