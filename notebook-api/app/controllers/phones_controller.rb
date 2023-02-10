@@ -31,7 +31,7 @@ class PhonesController < ApplicationController
 
   # GET /contacts/1/phones
   def show
-    render json: @phones
+    render json: @contact.phones
   end
 
   private
