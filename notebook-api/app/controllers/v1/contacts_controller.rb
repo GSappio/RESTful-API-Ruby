@@ -1,13 +1,18 @@
 module V1
 
   class ContactsController < ApplicationController
+  include ErrorSerializer
     before_action :set_contact, only: [:show, :update, :destroy]
 
     # GET /contacts
     def index
-      @contacts = Contact.all.page(params[:page])
+      page_number = params[:page].try(:[], :number)
+      per_page = params[:page].try(:[], :size)
+      
+      @contacts = Contact.all.page(page_number).per(per_page)
+      render json: @contacts # , methods: :birthdate_br # [:hello, :i18n]
       # paginate é da gem api-pagination
-      paginate json: @contacts # , methods: :birthdate_br # [:hello, :i18n]
+      # paginate json: @contacts # , methods: :birthdate_br # [:hello, :i18n]
     end
 
     # GET /contacts/1
@@ -22,7 +27,7 @@ module V1
       if @contact.save
         render json: @contact, include: [:kind, :phones, :address], status: :created, location: @contact
       else
-        render json: @contact.errors, status: :unprocessable_entity
+        render json: ErrorSerializer.serialize(@contact.errors)
       end
     end
 

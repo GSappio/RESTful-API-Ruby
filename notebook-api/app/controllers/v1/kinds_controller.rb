@@ -15,7 +15,7 @@ module V1
   # include ActionController::HttpAuthentication::Token::ControllerMethods
 
   # before_action :authenticate
-    before_action :set_kind, only: [:show, :update, :de stroy]
+    before_action :set_kind, only: [:show, :update, :destroy]
 
     # GET /kinds
     def index
@@ -69,7 +69,6 @@ module V1
       def kind_params
         params.require(:kind).permit(:description)
       end
-      
       # def authenticate
       # #   authenticate_or_request_with_http_digest("Application") do |username|
       # #     USERS[username]

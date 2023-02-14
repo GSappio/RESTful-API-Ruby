@@ -15,7 +15,7 @@ module V2
   # include ActionController::HttpAuthentication::Token::ControllerMethods
 
   # before_action :authenticate
-    before_action :set_kind, only: [:show, :update, :de stroy]
+    before_action :set_kind, only: [:show, :update, :destroy]
 
     # GET /kinds
     def index
