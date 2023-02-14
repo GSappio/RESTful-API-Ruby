@@ -23,3 +23,4 @@ class AppName
         [status, headers, [response.body]]
     end
 end
+end
