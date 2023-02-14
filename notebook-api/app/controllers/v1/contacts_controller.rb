@@ -13,7 +13,9 @@ module V1
 
       #Cache-Control --- expires_in 30.seconds, public: true
 
-      render json: @contacts # , methods: :birthdate_br # [:hello, :i18n]
+      if stale?(etag: @contacts)
+        render json: @contacts # , methods: :birthdate_br # [:hello, :i18n]
+      end
       # paginate é da gem api-pagination
       # paginate json: @contacts # , methods: :birthdate_br # [:hello, :i18n]
     end
